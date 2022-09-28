@@ -16,8 +16,8 @@
   var wpcf7Elm = document.querySelector('.wpcf7');
   wpcf7Elm.addEventListener('wpcf7submit', enviarDados);
   
-  function enviarDados() {
-    let endpointHash = "https://app.pipe.run/webservice/integradorJson?hash=9a7f7450-113a-49d4-affb-542e79f4d563";
+ function enviarDados() 
+ let endpointHash = "https://app.pipe.run/webservice/integradorJson?hash=9a7f7450-113a-49d4-affb-542e79f4d563";
   
     let name = document.getElementById("idNome").value;
     let email = document.getElementById("idEmail").value;
@@ -30,13 +30,13 @@
     let phone = document.getElementById("idWhatsapp").value;
     
          
-    function configPost(method,body) {
-      return {
-        "method": method,
-        "headers": { "Content-Type": "application/json"},
-        "body": JSON.stringify(body)
-      };
-    }
+function configPost(method,body) {
+	return {
+        	"method": method,
+       		"headers": { "Content-Type": "application/json"},
+       		"body": JSON.stringify(body)
+     			};
+   	}
   
     let rules = {
       "update": true,
@@ -57,9 +57,9 @@
       "cnpj": cnpj,
       "city_state": estado,
       "city_name": cidade,
-        "custom_fields": {
-        "Numero Funcionarios": funcionarios,
-        "Faturamento": faturamento
+      "custom_fields": {
+      "Numero Funcionarios": funcionarios,
+      "Faturamento": faturamento
                 },
       "last_conversion": {
           "source": "FORMULARIO COMPLETO" 
@@ -88,20 +88,28 @@
 
 
 <script>
- //  CODIGO PARA INTEGRAÇÃO WORDPRESS PIPERUN POPUP
+ //  CODIGO PARA INTEGRAÇÃO WORDPRESS PIPERUN POPUP E ESTÁTICO
  
-  (function($){
-    $('.wpcf7').on('submit', function () {enviarDados();
+ (function($){
+   $('.wpcf7').on('submit', function () {enviarDados();
         return false;});
-})(jQuery);
-function formatDate(date) {return (date.getDate() < 10 ? '0' : '') + date.getDate()
-            + '/' +
-            (date.getMonth() + 1)
-            + '/' +
-            date.getFullYear() + ' ' +
-            date.getHours() + ':' + date.getMinutes();}
-    window.onload = function() {console.log("teste-onload");}
+		})(jQuery);
+function formatDate(date){
+
+		return (date.getDate() < 10 ? '0' : '') + date.getDate()
+           	 + '/' +
+          	  (date.getMonth() + 1)
+          	  + '/' +
+           	 date.getFullYear() + ' ' +
+           	 date.getHours() + ':' + date.getMinutes();
+	    	}
+	    
+    window.onload = function() {
+    console.log("teste-onload");
+    }
+    
     function enviarDados() {
+    
         let dataHora = formatDate(new Date());
         let endpointHash = "https://app.pipe.run/webservice/integradorJson?hash=a330c202-b0da-4da3-a8b8-bb77fa0ed594";
         let name = document.getElementById("nome1").value;
@@ -117,15 +125,22 @@ function formatDate(date) {return (date.getDate() < 10 ? '0' : '') + date.getDat
         let marca = document.getElementById("marca1").value;
         let investimento = document.getElementById("investimento1").value;
         let whats = document.getElementById("whats1").value;
+	
+	
         function configPost(method, body) {
+	
             return {"method": method,
                 "headers": { "Content-Type": "application/json" },
-                "body": JSON.stringify(body)};}
+                "body": JSON.stringify(body)};
+		}
+		
         let rules = {"update": true,
             "filter_status_update": true,
             "status": "open",
             "equal_pipeline": true,
-            "filter_status_update": "open"};
+            "filter_status_update": "open"
+	    };
+	    
         let lead = [{"id": email,
             "title": name,
             "mobile_phone": phone,
@@ -143,34 +158,42 @@ function formatDate(date) {return (date.getDate() < 10 ? '0' : '') + date.getDat
             "Vende pelo WhatsApp": whats
         },
             "last_conversion": {
-                "source": "FORMULARIO COMPLETO"},}];
+                "source": "FORMULARIO COMPLETO"},
+		}
+		];
+		
         let dataToSend = {
             "rules": rules,
-            "leads": lead};
+            "leads": lead
+	    };
 
-            if (name == '' || email == '' || phone == '' || empresa == '' || whats == '' || marca == '' || investimento == '' || estado == '' || funcionarios == '' || cidade == '' || faturamento == '') {
-        alert("Por favor preencha todos os campos.");}
+            if (name == '' || email == '' || phone == '' || empresa == '' || whats == '' || marca == '' || investimento == '' || estado == '' || funcionarios == '' || cidade == '' || faturamento == '') 
+		{  
+	  	alert("Por favor preencha todos os campos.");
+		}
 
-      else {   fetch(endpointHash, configPost("POST", dataToSend))
-.then(response => response.json())
-.then(data => {
-window.location.assign('https://faculdadedoempreendedor.com.br/obrigado/');});};}
+      else {   
+      fetch(endpointHash, configPost("POST", dataToSend))
+	.then(response => response.json())
+	.then(data => {
+	window.location.assign('https://faculdadedoempreendedor.com.br/obrigado/');});
+	};
+	}
    
 </script>
-
 
 <style>
     /* CODIGO CSS PARA CONTACT FORM 7*/
     .wpcf7-submit{
-      border-radius: 10px;
-    background-image: linear-gradient(43deg, #FF5A00 40%, #FF5A00 100%);
+     	border-radius: 10px;
+    	background-image: linear-gradient(43deg, #FF5A00 40%, #FF5A00 100%);
         font-family: "Proxima Nova", Sans-serif;
         font-weight: 900;
         flex-basis: 100%;
-    color: #ffffff;
-    width:100%;
-    border-color:#000000;
-    margin-top:10px;
+   	 color: #ffffff;
+   	 width:100%;
+   	 border-color:#000000;
+   	 margin-top:10px;
         color: #000000;
         background-color: #0c71c3;
         height: 50px;
@@ -195,19 +218,6 @@ window.location.assign('https://faculdadedoempreendedor.com.br/obrigado/');});};
         padding: 9px;
         color: #080808;
     }
-    .form-control{    color: #f7f7f7;
-        background-color: rgb(255, 255, 255);<p>
-        border: none;
-        border-radius: 10px;
-        height: 45px;
-         width: 100%;
-        padding: px;
-        background-color: #ffffff;
-        border: 1px solid #000000;
-        padding: 9px;
-        color: #080808;
-          font-weight: bold;}
-          */
     </style>
 
 
@@ -255,7 +265,9 @@ window.location.assign('https://faculdadedoempreendedor.com.br/obrigado/');});};
 
 [submit "ACESSAR AGORA A FACULDADE"]
 
+
 <script>
+
 document.getElementById('cnpj1').addEventListener('input', function (e) {
     var x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,3})(\d{0,3})(\d{0,4})(\d{0,2})/);
     e.target.value = !x[2] ? x[1] : x[1] + '.' + x[2] + '.' + x[3] + '/' + x[4] + (x[5] ? '-' + x[5] : '');
